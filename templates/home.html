@@ -55,7 +55,7 @@
     .heart{
         font-size: 50px;
         position: absolute;
-        animation: floating 1.5s infinite;
+        animation: floating 5s infinite;
     }
 
     .left-heart{
@@ -71,11 +71,28 @@
             transform: translateY(-10px);
         }
 
-        25%{
+        13%{
             transform: rotateY(90deg);
         }
 
+        25%{
+            transform: translateY(10px);
+        }
+
+
         50%{
+            transform: translateY(-10px);
+        }
+
+        63%{
+            transform: rotateZ(180deg);
+        }
+
+        73%{
+            transform: rotateZ(360deg);
+        }
+
+        88%{
             transform: translateY(10px);
         }
 
