@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="text-center">Your Favourites</h1>
+
+<hr>
+
+<div class="cards row mt-5">
+    {% if people %}
+        {% for person in people %}
+
+        <div data-link="{{ person[2] }}_{{ person[0] }}" class="card m-1 mb-5 
+        {% if person[2] == 'Male' %}
+        male
+        {% elif person[2] == 'Female' %}
+        female
+        {% else %}
+        nonbinary
+        {% endif %}
+        ">
+            <div class="card-header">{{ person[1] }}</div>
+            <div class="card-body">Enjoys {{ person[4] }}</div>
+            <div class="card-footer">Lives in {{ person[3] }}</div>
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+    <div class="alert alert-warning" role="warning">No favourites</div>
+    {% endif %}
+</div>
+
+<hr>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<script>
+    $(document).ready(() => {
+        $(".card").css("display", "none");
+        $(".card").each(function(index) {
+            
+            $(this).delay(150 * index).fadeIn(500); 
+
+            $(this).on("click", () => {
+                const link = $(this).data("link");
+                const url = `profile_${link}`;
+                window.location.href = url;
+            })
+        });
+    })
+
+</script>
+
+{% endblock %}

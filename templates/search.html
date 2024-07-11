@@ -1,0 +1,218 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form class="search-form" action="/search" method="POST">
+    
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="user-gender">You are a </label>
+        </div>
+        <select required class="custom-select" name="user-gender" id="user-gender">
+          <option value="" disabled selected>Choose</option>
+          <option value="Male" {% if 'Male' in request.form.get('user-gender', '') %} selected {% endif %}>Male</option>>
+          <option value="Female" {% if 'Female' in request.form.get('user-gender', '') %} selected {% endif %}>Female</option>
+          <option value="nonbinary" {% if 'nonbinary' in request.form.get('user-gender', '') %} selected {% endif %}>Nonbinary</option>
+        </select>
+      </div>
+
+    <div class="query-container">
+        <div class="form-group">
+            <label>Gender</label>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="Male" id="male" name="gender"
+                {% if 'Male' in request.form.getlist('gender') %} checked {% endif %}>
+                <label class="form-check-label" for="male">
+                    Male
+                </label>
+            </div>
+            <div class="mb-2 mt-2 form-check">
+                <input class="form-check-input" type="checkbox" value="Female" id="female" name="gender"
+                {% if 'Female' in request.form.getlist('gender') %} checked {% endif %}>
+                <label class="form-check-label" for="female">
+                    Female
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="Nonbinary" id="nonbinary" name="gender"
+                {% if 'Nonbinary' in request.form.getlist('gender') %} checked {% endif %}>
+                <label class="form-check-label" for="nonbinary">
+                    Nonbinary
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Location</label>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="Suffolk" id="suffolk" name="location"
+                {% if 'Suffolk' in request.form.getlist('location') %} checked {% endif %}>
+                <label class="form-check-label" for="suffolk">
+                    Suffolk
+                </label>
+            </div>
+            <div class="mb-2 mt-2 form-check">
+                <input class="form-check-input" type="checkbox" value="Norfolk" id="norfolk" name="location"
+                {% if 'Norfolk' in request.form.getlist('location') %} checked {% endif %}>
+                <label class="form-check-label" for="norfolk">
+                    Norfolk
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="Essex" id="essex" name="location"
+                {% if 'Essex' in request.form.getlist('location') %} checked {% endif %}>
+                <label class="form-check-label" for="essex">
+                    Essex
+                </label>
+            </div>
+            <div class="mt-2 form-check">
+                <input class="form-check-input" type="checkbox" value="Cambridgeshire" id="cambridgeshire" name="location"
+                {% if 'Cambridgeshire' in request.form.getlist('location') %} checked {% endif %}>
+                <label class="form-check-label" for="cambridgeshire">
+                    Cambridgeshire
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group hobby-select-group">
+        <div class="hobby-input w-100">
+            <div class="input-group-prepend">
+                <button class="btn add-hobby" type="button">Add</button>
+                <button class="btn remove-hobby" type="button">Remove</button>
+            </div>
+            <select class="custom-select hobby-select" name="hobby-select" id="hobby-select">
+                <option value="" disabled selected>Choose</option>
+                <option value="Swimming">Swimming</option>
+                <option value="Football">Football</option>
+                <option value="Cricket">Cricket</option>
+                <option value="Rugby">Rugby</option>
+                <option value="Running">Running</option>
+                <option value="Tennis">Tennis</option>
+                <option value="Badminton">Badminton</option>
+                <option value="Cycling">Cycling</option>
+                <option value="Gym">Gym</option>
+                <option value="Hockey">Hockey</option>
+                <option value="Boxing">Boxing</option>
+            </select>
+        </div>
+
+        <input type="text" class="hobby-list w-100 form-control" value="{% if request.form.get('hobby-list') %} {{ request.form.get('hobby-list') }} {% endif %}" name="hobby-list" id="hobby-list" readonly>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">Submit</button>
+</form>
+
+
+<div class="cards row mt-5">
+    {% if people %}
+        {% for person in people %}
+
+        <div data-link="{{ person[2] }}_{{ person[0] }}" class="card m-1 mb-5 
+        {% if person[2] == 'Male' %}
+        male
+        {% elif person[2] == 'Female' %}
+        female
+        {% else %}
+        nonbinary
+        {% endif %}
+        ">
+            <div class="card-header">{{ person[1] }}</div>
+            <div class="card-body">Enjoys {{ person[4] }}</div>
+            <div class="card-footer">Lives in {{ person[3] }}</div>
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+    <div class="alert alert-warning" role="warning">No results</div>
+    {% endif %}
+</div>
+
+{% if people|length > 10 %}
+<div class="btn btn-primary show-more w-100">Show more</div>
+{% endif %}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<script>
+    $(document).ready(() => {
+        $(".card").css("display", "none");
+        $(".card").each(function(index) {
+            if(index >= 10){
+               $(this).addClass("excess")
+            }else{
+                $(this).delay(150 * index).fadeIn(500);  
+            }
+           
+
+            $(this).on("click", () => {
+                const link = $(this).data("link");
+                const url = `profile_${link}`;
+                window.location.href = url;
+            })
+        });
+
+        $(".show-more").on("click", () => {
+            if($(".excess").css("display") == "none"){
+                $(".excess").css("display", "block");
+                $(".show-more").html("Show less")
+            }else{
+                $(".excess").css("display", "none");
+                $(".show-more").html("Show more")
+            }
+
+        })
+
+        $(".add-hobby").on("click", () => {
+            let interest = $(".hobby-select").val();
+            if(interest){
+                let currentHobbies = $("#hobby-list").val().trim();
+                if(currentHobbies && !currentHobbies.includes(interest)){
+                    $("#hobby-list").val(currentHobbies + " " + interest);
+                }else{
+                    $("#hobby-list").val(interest);
+                }
+            }
+        })
+
+        $(".remove-hobby").on("click", () => {
+            let interest = $(".hobby-select").val();
+            let currentHobbies = $("#hobby-list").val().trim();
+            console.log("       trimmed      ".trim())
+            if(currentHobbies && currentHobbies.includes(interest)){
+                $("#hobby-list").val(currentHobbies.replace(interest, ""));
+            }
+        })
+    })
+</script>
+
+{% endblock %}
+
+
+<!-- Button trigger modal
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Launch demo modal
+  </button>
+  
+Modal 
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div> ! -->

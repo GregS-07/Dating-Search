@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block content %}
+
+<center>
+<div class="wrapper mt-5 d-flex align-items-center justify-content-center">
+    <h1>Find Your Match</h1>
+
+    <div class="buttons">
+        <a href="/search"><button class="search-button">Search</button></a>
+        <a href="https://gregsternik.netlify.app" target="_blank"><button class="portfolio-button">Portfolio</button></a>
+    </div>
+
+    <div class="left-heart heart">❤️</div>
+    <div class="right-heart heart">❤️</div>
+</div>
+</center>
+<style>
+    .wrapper{
+        flex-direction: column;
+        position: relative;
+        width: fit-content;
+    }
+
+    .search-button, .portfolio-button{
+        padding: 15px;
+        outline: none;
+        border: 2px solid black;
+    }
+
+    .search-button{
+        color: white;
+        background-color: #ee6b6e;
+        border-color: #ce5c5e;
+    }
+
+    .search-button:hover {
+        background-color: #ce5c5e;
+    }
+
+    .portfolio-button{
+        background: transparent;
+        border-color: #ce5c5e;
+        color: #ce5c5e;
+    }
+
+    .portfolio-button:hover{
+        color: white;
+        background-color: #ce5c5e;
+    }
+
+    .search-button:hover, .portfolio-button:hover, .search-button:focus, .portfolio-button:focus{
+        outline: none;
+    }
+
+    .heart{
+        font-size: 50px;
+        position: absolute;
+        animation: floating 1.5s infinite;
+    }
+
+    .left-heart{
+        left: -70px;
+    }
+
+    .right-heart{
+        right: -70px;
+    }
+
+    @keyframes floating{
+        0%{
+            transform: translateY(-10px);
+        }
+
+        25%{
+            transform: rotateY(90deg);
+        }
+
+        50%{
+            transform: translateY(10px);
+        }
+
+
+        100%{
+            transform: translateY(-10px);
+        }
+    }
+</style>
+{% endblock %}

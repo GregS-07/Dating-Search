@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Pacifico&display=swap');
+
+/* General Styles */
+* {
+    font-family: "Lato";
+    box-sizing: border-box;
+    cursor: url("../images/normal.cur"), auto;
+}
+
+button, input, a, .btn, select, option, .card-header, .card-body, .card-footer {
+    cursor: url("../images/link.cur"), auto !important;
+}
+
+.container{
+    height: 100%;
+}
+
+html, body{
+    background-color: #ffcbd1;
+    height: 100%;
+}
+
+.alert{
+    width: 100%;
+}
+
+
+/* Remove box shadow and change background color on button focus/active */
+.btn-primary:active, .btn-primary:focus, .btn:focus, .btn:active {
+    box-shadow: none !important;
+    background-color: #b34a4c !important;
+    z-index: 2 !important;
+}
+
+/* Hide class */
+.hide {
+    display: none;
+}
+
+/* Custom HR styling */
+hr {
+    background-image: url("../images/heart.png");
+    background-repeat: repeat-x;
+    border: none;
+    height: 15px;
+    animation: move 10s linear infinite;
+}
+
+@keyframes move {
+    from { background-position: left; }
+    to { background-position: right; }
+}
+
+/* Button Styling */
+.btn {
+    transition: letter-spacing 0.25s;
+    outline: none;
+    border: none;
+}
+
+.btn-primary {
+    background-color: #ee6b6e;
+    border-color: #ce5c5e;
+}
+
+.btn-primary:hover {
+    background-color: #ce5c5e;
+}
+
+.btn:hover {
+    letter-spacing: 2px;
+}
+
+/* Navbar Styling */
+.navbar-brand {
+    font-family: "Pacifico";
+    color: rgb(255, 252, 56);
+    cursor: default;
+}
+
+.navbar-brand:hover {
+    color: rgb(255, 252, 56);
+}
+
+.navbar {
+    background-color: #ee6b6e;
+}
+
+.nav-link {
+    color: rgb(255, 252, 56);
+    transition-duration: 1s;
+}
+
+.nav-link:hover {
+    background-color: rgb(255, 252, 56);
+    color: #ee6b6e;
+}
+
+/* Custom toggler for navbar */
+.custom-toggler.navbar-toggler {
+    border-color: lightgreen;
+}
+
+.navbar-toggler-icon img{
+    width: 25px;
+}
+
+/* Gender Card Styling */
+.male .card-header, .male .card-footer {
+    background-color: #a6aee3;
+}
+
+.male .card-body {
+    background-color: #d1d5ed;
+}
+
+.female .card-header, .female .card-footer {
+    background-color: #e3a6c4;
+}
+
+.female .card-body {
+    background-color: #edd1df;
+}
+
+.card {
+    cursor: url("../images/link.cur"), auto;
+    transition: transform 0.5s, box-shadow 0.5s;
+}
+
+.card:hover {
+    transform: scale(1.25);
+    z-index: 1;
+    box-shadow: 0px 0px 15px black;
+}
+
+/* Form Customization */
+.search-form{
+    background-color: blanchedalmond;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    position: relative;
+    cursor: url("../images/link.cur"), auto;
+}
+
+input[type="checkbox"]:before {
+    content: "💔";
+    position: absolute;
+    right: 15px;
+    bottom: -7px;
+    transform: scale(2);
+}
+
+input[type="checkbox"]:checked:before {
+    content: "❤️";
+}
+
+.custom-select {
+    background-color: #ee6b6e !important;
+    border: none;
+    color: white !important;
+    outline: none;
+}
+
+.custom-select:focus {
+    box-shadow: 0px 0px 10px rgb(129, 13, 32);
+}
+
+.input-group-prepend, .input-group-text, .input-group {
+    background-color: #ce5c5e;
+    color: white;
+    border: none;
+    outline: none !important;
+}
+
+/* Search Form Styling */
+.query-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.hobby-select-group {
+    display: flex;
+    flex-direction: row;
+}
+
+.hobby-input {
+    display: flex;
+    flex-direction: row;
+}
+
+.hobby-select{
+    border-radius: 0px;
+}
+
+.hobby-list{
+    border-radius: 0px 15px 15px 0px;
+}
+
+.hobby-input button {
+    background-color: transparent;
+    color: white;
+    background-color: #ce5c5e;
+    border-radius: 0;
+    transition: padding 0.5s;
+}
+
+.add-hobby {
+    border-radius: 15px 0 0 15px !important;
+    transform: translateX(15px);
+    padding-right: 25px;
+}
+
+.add-hobby:active, .add-hobby:focus{
+    background-color: #ce5c5e !important;
+}
+
+.add-hobby:hover {
+    padding-right: 35px;
+    color: white;
+}
+
+.remove-hobby {
+    background-color: #b34a4c !important;
+    border-radius: 15px 0 0 15px !important;
+    z-index: 10000;
+}
+
+.remove-hobby:hover {
+    color: white;
+    padding-right: 25px;
+}
+
+.hobby-input .input-group-prepend {
+    background-color: transparent;
+}
+
+.hobby-input button:hover {
+    letter-spacing: normal;
+}
+
+/* Favourited */
+
+.star{
+    font-size: 50px;
+}
+
