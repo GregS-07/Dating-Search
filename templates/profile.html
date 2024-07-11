@@ -6,8 +6,8 @@
 
 <h1 class="text-center profile-name">{{ person[1] }}</h1>
 <p class="text-center profile-bio">{{ person[1] }} is a {{ person[2] }} who enjoys {{ person[4] }} in {{ person[3]}}, seeking a {{person[5]}} partner.</p>
-<form action="/favourite_{{ person[2] }}_{{ person[0] }}">
-    <div class="star text-center">{% if is_favourited %}⭐{% else %}✩{% endif %}</div>
+<form class="d-flex justify-content-center" action="/favourite_{{ person[2] }}_{{ person[0] }}">
+    <img src="{% if is_favourited %}static/images/start-filled.svg{% else %}static/images/star-outlined.svg{% endif %}" class="star text-center"></img>
 </form>
 <hr>
 

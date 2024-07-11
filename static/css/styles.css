@@ -245,6 +245,6 @@ input[type="checkbox"]:checked:before {
 /* Favourited */
 
 .star{
-    font-size: 50px;
+    height: 100px;
 }
 
