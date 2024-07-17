@@ -66,48 +66,6 @@ def search():
 
     return render_template("search.html")
 
-# @app.route("/profile_<gender>_<int:id>")
-# def profile(gender, id):
-#     with conn_db() as conn:
-#         cursor = conn.cursor()
-#         query = f"SELECT * FROM {gender} WHERE id = ?"
-#         cursor.execute(query, (id,))
-#         person = cursor.fetchone()
-#         return render_template("profile.html", person=person)
-    
-# @app.route("/favourite_<gender>_<int:id>")
-# def favourite(gender, id):
-#     favourites = session.get("favourites", "")
-#     favourites = favourites.split(",")
-
-#     if f"{gender}_{id}" in favourites:
-#         favourite.remove(f"{gender}_{id}")
-#     else:
-#         favourites.append(f"{gender}_{id}")
-#     favourites = favourites.join(",")
-#     session["favourites"] = favourites
-#     print(favourites)
-#     return redirect(url_for("account"))
-    
-# @app.route('/account')
-# def account():
-#     favourites = session.get('favourites', "")
-#     favourites = favourites.split(",")
-#     print(favourites)
-#     people = []
-#     with conn_db() as conn:
-#         cursor = conn.cursor()
-#         for fav in favourites:
-#             gender, id = fav.split('_')
-#             print(fav)
-#             cursor.execute(f'SELECT * FROM {gender} WHERE id=?', (id,))
-#             person = cursor.fetchone()
-#             if person:
-#                 people.append(person)
-#                 print(person)
-#     return render_template('account.html', people=people)
-
-
 @app.route("/profile_<gender>_<int:id>")
 def profile(gender, id):
     with conn_db() as conn:
@@ -133,7 +91,7 @@ def favourite(gender, id):
     session["favourites"] = ",".join(favourites)
     return redirect(url_for("account"))
 
-@app.route('/account')
+@app.route("/account")
 def account():
     favourites = session.get('favourites', "")
     favourites = favourites.split(",") if favourites else []
@@ -148,7 +106,11 @@ def account():
             if person:
                 people.append(person)
 
-    return render_template('account.html', people=people)
+    return render_template("account.html", people=people)
+
+@app.route("/analytics")
+def analytics():
+    return render_template("analytics.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
