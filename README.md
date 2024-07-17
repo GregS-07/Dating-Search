@@ -18,7 +18,7 @@ python database.py
 Run this command and open the link provided in the terminal
 
 ```bash
-python database.py
+python app.py
 ```
 ## Purpose
 
