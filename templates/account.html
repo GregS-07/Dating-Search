@@ -33,24 +33,6 @@
 
 <hr>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-
-<script>
-    $(document).ready(() => {
-        $(".card").css("display", "none");
-        $(".card").each(function(index) {
-            
-            $(this).delay(150 * index).fadeIn(500); 
-
-            $(this).on("click", () => {
-                const link = $(this).data("link");
-                const url = `profile_${link}`;
-                window.location.href = url;
-            })
-        });
-    })
-
-</script>
 
 {% endblock %}

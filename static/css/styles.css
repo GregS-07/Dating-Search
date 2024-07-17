@@ -32,6 +32,11 @@ html, body{
     z-index: 2 !important;
 }
 
+/* Carousels */
+.carousel-control-next, .carousel-control-prev{
+    filter: brightness(0%);
+}
+
 /* Hide class */
 .hide {
     display: none;
@@ -266,5 +271,100 @@ input[type="checkbox"]:checked:before {
 
     .hobby-select{
         border-radius: 0px 15px 15px 0px;
+    }
+
+    /* Card */
+
+    .card{
+        width: 100%;
+    }
+}
+
+/* Home Page */
+
+.home-wrapper{
+    flex-direction: column;
+    position: relative;
+    width: fit-content;
+}
+
+.search-button, .portfolio-button{
+    padding: 15px;
+    outline: none;
+    border: 2px solid black;
+}
+
+.search-button{
+    color: white;
+    background-color: #ee6b6e;
+    border-color: #ce5c5e;
+}
+
+.search-button:hover {
+    background-color: #ce5c5e;
+}
+
+.portfolio-button{
+    background: transparent;
+    border-color: #ce5c5e;
+    color: #ce5c5e;
+}
+
+.portfolio-button:hover{
+    color: white;
+    background-color: #ce5c5e;
+}
+
+.search-button:hover, .portfolio-button:hover, .search-button:focus, .portfolio-button:focus{
+    outline: none;
+}
+
+.heart{
+    font-size: 50px;
+    position: absolute;
+    animation: floating 5s infinite;
+}
+
+.left-heart{
+    left: -70px;
+}
+
+.right-heart{
+    right: -70px;
+}
+
+@keyframes floating{
+    0%{
+        transform: translateY(-10px);
+    }
+
+    13%{
+        transform: rotateY(90deg);
+    }
+
+    25%{
+        transform: translateY(10px);
+    }
+
+
+    50%{
+        transform: translateY(-10px);
+    }
+
+    63%{
+        transform: rotateZ(180deg);
+    }
+
+    73%{
+        transform: rotateZ(360deg);
+    }
+
+    88%{
+        transform: translateY(10px);
+    }
+
+
+    100%{
+        transform: translateY(-10px);
     }
 }

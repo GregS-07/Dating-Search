@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form class="search-form" action="/search" method="POST">
+<form class="search-form mt-3" action="/search" method="POST">
     
     <div class="input-group mb-3">
         <div class="input-group-prepend">
@@ -133,86 +133,4 @@
 <div class="btn btn-primary show-more w-100">Show more</div>
 {% endif %}
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
-<script>
-    $(document).ready(() => {
-        $(".card").css("display", "none");
-        $(".card").each(function(index) {
-            if(index >= 10){
-               $(this).addClass("excess")
-            }else{
-                $(this).delay(150 * index).fadeIn(500);  
-            }
-           
-
-            $(this).on("click", () => {
-                const link = $(this).data("link");
-                const url = `profile_${link}`;
-                window.location.href = url;
-            })
-        });
-
-        $(".show-more").on("click", () => {
-            if($(".excess").css("display") == "none"){
-                $(".excess").css("display", "block");
-                $(".show-more").html("Show less")
-            }else{
-                $(".excess").css("display", "none");
-                $(".show-more").html("Show more")
-            }
-
-        })
-
-        $(".add-hobby").on("click", () => {
-            let interest = $(".hobby-select").val();
-            if(interest){
-                let currentHobbies = $("#hobby-list").val().trim();
-                if(currentHobbies && !currentHobbies.includes(interest)){
-                    $("#hobby-list").val(currentHobbies + " " + interest);
-                }else{
-                    $("#hobby-list").val(interest);
-                }
-            }
-        })
-
-        $(".remove-hobby").on("click", () => {
-            let interest = $(".hobby-select").val();
-            let currentHobbies = $("#hobby-list").val().trim();
-            console.log("       trimmed      ".trim())
-            if(currentHobbies && currentHobbies.includes(interest)){
-                $("#hobby-list").val(currentHobbies.replace(interest, ""));
-            }
-        })
-    })
-</script>
-
 {% endblock %}
-
-
-<!-- Button trigger modal
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Launch demo modal
-  </button>
-  
-Modal 
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div> ! -->
